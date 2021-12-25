@@ -17,5 +17,5 @@ interface NimpleAuthApi {
     suspend fun resetPassword(request: ForgotPasswordRequest) : ForgotPasswordResponse
 
     @POST("/api/v1/oauth/revoke")
-    suspend fun logout(request: LogoutRequest)
+    suspend fun logout(request: LogoutRequest) : LogoutResponse
 }

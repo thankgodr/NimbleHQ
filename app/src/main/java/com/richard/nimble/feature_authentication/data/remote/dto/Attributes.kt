@@ -7,11 +7,11 @@ data class Attributes(
     @SerializedName("access_token")
     val accessToken: String,
     @SerializedName("created_at")
-    val createdAt: Int,
+    val createdAt: Int = 0,
     @SerializedName("expires_in")
-    val expiresIn: Int,
+    val expiresIn: Int = 0,
     @SerializedName("refresh_token")
-    val refreshToken: String,
+    val refreshToken: String = "",
     @SerializedName("token_type")
-    val tokenType: String
+    val tokenType: String = ""
 )
