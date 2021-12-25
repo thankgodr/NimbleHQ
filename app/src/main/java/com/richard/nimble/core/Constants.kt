@@ -8,6 +8,8 @@ object Constants {
        val  password = "password"
         val refresh = "refresh_token"
     }
+
+    val BASE_URL = ""
     val apiKey = BuildConfig.CONSUMER_KEY
     val apiSecret = BuildConfig.CONSUMER_SECRET
 }
