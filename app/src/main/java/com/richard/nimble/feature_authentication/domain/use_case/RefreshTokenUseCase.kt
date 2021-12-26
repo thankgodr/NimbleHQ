@@ -10,13 +10,13 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class LoginUseCase @Inject constructor(
+class RefreshTokenUseCase @Inject constructor(
     private val authEntication : Authentication
 )  {
-    operator fun invoke(request: ClientAuthRequest) : Flow<Resource<CurrentUser>>  = flow{
+    operator fun invoke(request: ClientAuthRequest) : Flow<Resource<CurrentUser>> = flow{
         try{
             emit(Resource.Loading<CurrentUser>())
-            val userInfor = authEntication.login(request)
+            val userInfor = authEntication.refresh(request)
             emit(Resource.Success<CurrentUser>(userInfor))
         }catch (e : HttpException){
             emit(Resource.Error<CurrentUser>(e.localizedMessage ?: "Unknown Error" ))

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Nimble</string>
+    <string name="background_image">Backgroun Image</string>
+    <string name="logo">Logo Image</string>
 </resources>
