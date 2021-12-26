@@ -2,4 +2,9 @@
     <string name="app_name">Nimble</string>
     <string name="background_image">Backgroun Image</string>
     <string name="logo">Logo Image</string>
+    <string name="overlay">overlay</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="submit">Submit</string>
+    <string name="login">Login</string>
 </resources>

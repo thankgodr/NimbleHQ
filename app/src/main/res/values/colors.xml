@@ -10,4 +10,10 @@
 
     <color name="light_grey">#00000000</color>
     <color name="think_black">#000000</color>
+    <color name="input_background">#2EFFFFFF</color>
+
+    <color name="form_gradient1">#77000000</color>
+    <color name="form_gradient2">#000000</color>
+    <color name="grey_white">#D6D5CB</color>
+    <color name="grey_black">#15151A</color>
 </resources>

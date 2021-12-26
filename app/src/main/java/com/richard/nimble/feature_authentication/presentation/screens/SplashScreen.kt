@@ -14,6 +14,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.richard.nimble.R
 import com.richard.nimble.core.presentation.Logo
+import com.richard.nimble.feature_authentication.presentation.components.auth.AuthInput
+import com.richard.nimble.feature_authentication.presentation.components.auth.Overlay
 import com.richard.nimble.feature_authentication.presentation.components.splash.BackgroundImage
 import com.richard.nimble.feature_authentication.presentation.components.splash.BottomLine
 
