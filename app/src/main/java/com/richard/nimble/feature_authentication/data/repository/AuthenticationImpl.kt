@@ -1,6 +1,6 @@
 package com.richard.nimble.feature_authentication.data.repository
 
-import com.richard.nimble.core.Constants
+import com.richard.nimble.core.data.Constants
 import com.richard.nimble.feature_authentication.data.remote.NimpleAuthApi
 import com.richard.nimble.feature_authentication.data.remote.dto.*
 import com.richard.nimble.feature_authentication.domain.model.ClientAuthRequest

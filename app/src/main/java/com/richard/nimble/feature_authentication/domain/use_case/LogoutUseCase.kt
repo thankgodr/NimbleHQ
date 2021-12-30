@@ -1,11 +1,7 @@
 package com.richard.nimble.feature_authentication.domain.use_case
 
-import com.richard.edvora.commons.Resource
-import com.richard.nimble.core.Constants
-import com.richard.nimble.feature_authentication.data.remote.NimpleAuthApi
-import com.richard.nimble.feature_authentication.data.remote.dto.LogoutRequest
+import com.richard.nimble.core.data.Resource
 import com.richard.nimble.feature_authentication.domain.model.ClientAuthRequest
-import com.richard.nimble.feature_authentication.domain.model.CurrentUser
 import com.richard.nimble.feature_authentication.domain.repository.Authentication
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

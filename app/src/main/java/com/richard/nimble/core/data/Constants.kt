@@ -1,4 +1,4 @@
-package com.richard.nimble.core
+package com.richard.nimble.core.data
 
 import com.richard.nimble.BuildConfig
 
@@ -9,7 +9,14 @@ object Constants {
         val refresh = "refresh_token"
     }
 
-    val BASE_URL = ""
+    object Route {
+        val login = "login"
+        val resetPassword = "resetpassword"
+        val loading = "loading"
+        val splash = "splash"
+    }
+
+    val BASE_URL = "https://survey-api.nimblehq.co/"
     val apiKey = BuildConfig.CONSUMER_KEY
     val apiSecret = BuildConfig.CONSUMER_SECRET
 }

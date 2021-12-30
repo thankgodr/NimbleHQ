@@ -17,11 +17,11 @@ import com.richard.nimble.R
 @Composable
 fun SubmitButton(
     btnText : String = stringResource(id = R.string.submit),
-    action : Unit,
+    action : () -> Unit,
     modifier: Modifier = Modifier
 ){
     OutlinedButton(
-        onClick = { action },
+        onClick =  action ,
         modifier = modifier
             .padding(16.dp)
             .height(56.dp)

@@ -1,6 +1,6 @@
 package com.richard.nimble.feature_authentication.domain.use_case
 
-import com.richard.edvora.commons.Resource
+import com.richard.nimble.core.data.Resource
 import com.richard.nimble.feature_authentication.domain.model.ClientAuthRequest
 import com.richard.nimble.feature_authentication.domain.model.CurrentUser
 import com.richard.nimble.feature_authentication.domain.repository.Authentication
@@ -15,7 +15,6 @@ class RefreshTokenUseCase @Inject constructor(
 )  {
     operator fun invoke(request: ClientAuthRequest) : Flow<Resource<CurrentUser>> = flow{
         try{
-            emit(Resource.Loading<CurrentUser>())
             val userInfor = authEntication.refresh(request)
             emit(Resource.Success<CurrentUser>(userInfor))
         }catch (e : HttpException){
