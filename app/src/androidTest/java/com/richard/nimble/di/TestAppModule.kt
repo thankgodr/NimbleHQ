@@ -3,9 +3,11 @@ package com.richard.nimble.di
 import com.richard.nimble.core.data.Constants
 import com.richard.nimble.feature_authentication.data.remote.NimpleAuthApi
 import com.richard.nimble.feature_authentication.data.repository.AuthenticationImpl
+import com.richard.nimble.feature_authentication.data.repository.FakeAuthenticationImpl
 import com.richard.nimble.feature_authentication.domain.repository.Authentication
 import com.richard.nimble.feature_authentication.domain.use_case.SessionManager
 import com.richard.nimble.feature_survey.data.remote.SurveyApi
+import com.richard.nimble.feature_survey.data.repository.FakeSurveyImpl
 import com.richard.nimble.feature_survey.data.repository.SurveysImpl
 import com.richard.nimble.feature_survey.domain.SurveysSignature
 import dagger.Module
@@ -19,10 +21,10 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule {
+object TestAppModule {
+
     @Provides
     @Singleton
     fun providesAuthApi() : NimpleAuthApi{
@@ -33,10 +35,17 @@ object AppModule {
             .create(NimpleAuthApi::class.java)
     }
 
+
     @Provides
     @Singleton
-    fun provideAuthRepository(api : NimpleAuthApi) : Authentication{
-        return AuthenticationImpl(api)
+    fun provideAuthRepository(api : NimpleAuthApi) : Authentication {
+        return FakeAuthenticationImpl(api)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSurveyRepo(api : SurveyApi) : SurveysSignature {
+        return FakeSurveyImpl(api)
     }
 
     @Provides
@@ -60,12 +69,4 @@ object AppModule {
             .build()
             .create(SurveyApi::class.java)
     }
-
-    @Provides
-    @Singleton
-    fun provideSurveyRepo(api : SurveyApi) : SurveysSignature{
-        return SurveysImpl(api)
-    }
-
-
 }
