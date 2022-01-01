@@ -5,6 +5,7 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.navigation.compose.rememberNavController
 import com.richard.nimble.core.data.Constants
 import com.richard.nimble.di.AppModule
+import com.richard.nimble.di.TestAppModuleNegative
 import com.richard.nimble.feature_authentication.presentation.components.NavigationHost
 import com.richard.nimble.feature_authentication.presentation.screens.auth.LoginScreen
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -14,7 +15,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-@UninstallModules(AppModule::class)
+@UninstallModules(AppModule::class, TestAppModuleNegative::class)
 @HiltAndroidTest
 class TestLoginUI {
     @get:Rule(order = 1)

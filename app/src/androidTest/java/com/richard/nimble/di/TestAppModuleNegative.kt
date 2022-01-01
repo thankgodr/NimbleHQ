@@ -10,6 +10,7 @@ import com.richard.nimble.feature_authentication.domain.use_case.LoginRegisterUs
 import com.richard.nimble.feature_authentication.domain.use_case.SessionManager
 import com.richard.nimble.feature_survey.data.remote.SurveyApi
 import com.richard.nimble.feature_survey.data.repository.FakeSurveyImpl
+import com.richard.nimble.feature_survey.data.repository.FakeSurveyNegativeImpl
 import com.richard.nimble.feature_survey.data.repository.SurveysImpl
 import com.richard.nimble.feature_survey.domain.SurveysSignature
 import dagger.Module
@@ -26,7 +27,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object TestAppModule {
+object TestAppModuleNegative {
 
     @Provides
     @Singleton
@@ -41,13 +42,13 @@ object TestAppModule {
     @Provides
     @Singleton
     fun provideAuthRepository(api : NimpleAuthApi) : Authentication {
-        return FakeAuthenticationImpl(api)
+        return FakeAuthenticationNegativeImple(api)
     }
 
     @Provides
     @Singleton
     fun provideSurveyRepo(api : SurveyApi) : SurveysSignature {
-        return FakeSurveyImpl(api)
+        return FakeSurveyNegativeImpl(api)
     }
 
     @Provides

@@ -1,10 +1,11 @@
-package com.richard.nimble.feature_authentication.domain.use_case
+package com.richard.nimble.feature_authentication.domain.use_case.negative
 
-import com.google.common.truth.Truth.assertThat
+import com.google.common.truth.Truth
 import com.richard.nimble.core.data.Resource
 import com.richard.nimble.di.AppModule
-import com.richard.nimble.di.TestAppModuleNegative
+import com.richard.nimble.di.TestAppModule
 import com.richard.nimble.feature_authentication.domain.model.ClientAuthRequest
+import com.richard.nimble.feature_authentication.domain.use_case.RefreshTokenUseCase
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
@@ -16,38 +17,35 @@ import org.junit.Rule
 import org.junit.Test
 import javax.inject.Inject
 
-@UninstallModules(AppModule::class, TestAppModuleNegative::class)
+@UninstallModules(AppModule::class, TestAppModule::class)
 @HiltAndroidTest
-class TestRefreshTokenUseCase {
+class TestRefreshTokenUseCaseNegative {
     @get:Rule
     var hiltRule = HiltAndroidRule(this)
 
     @Inject
     lateinit var refreshTokenUseCase: RefreshTokenUseCase
 
+
     @Before
     fun init(){
         hiltRule.inject()
     }
 
+
+
     @Test
-    fun firEmetionsShouldBeSuscessOrError() = runBlockingTest {
+    fun ValidErrorWasEmited() = runBlockingTest {
         val emittions = refreshTokenUseCase(ClientAuthRequest("",""))
-        val first = emittions.first()
-        assertThat(first).isInstanceOf(Resource.Success::class.java)
+        val last = emittions.last()
+        Truth.assertThat(last).isInstanceOf(Resource.Error::class.java)
     }
 
     @Test
-    fun FlowEmttionsWasOfTyperesource() = runBlockingTest {
+    fun ErrorHasAMessage() = runBlockingTest {
         val emittions = refreshTokenUseCase(ClientAuthRequest("",""))
-        val first = emittions.last()
-        assertThat(first).isInstanceOf(Resource::class.java)
+        val last = emittions.last()
+        Truth.assertThat(last.message).isNotEmpty()
     }
-
-
-
-
-
-
 
 }

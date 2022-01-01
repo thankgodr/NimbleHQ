@@ -1,11 +1,10 @@
-package com.richard.nimble.feature_survey.domain.use_case
+package com.richard.nimble.feature_survey.domain.use_case.negative
 
 import com.google.common.truth.Truth
-import com.google.common.truth.Truth.assertThat
 import com.richard.nimble.core.data.Resource
 import com.richard.nimble.di.AppModule
-import com.richard.nimble.di.TestAppModuleNegative
-import com.richard.nimble.feature_survey.domain.GetSurveyDeatailsUseCase
+import com.richard.nimble.di.TestAppModule
+import com.richard.nimble.feature_survey.domain.GetSurveListUseCase
 import com.richard.nimble.feature_survey.domain.Survey
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -18,34 +17,39 @@ import org.junit.Rule
 import org.junit.Test
 import javax.inject.Inject
 
-@UninstallModules(AppModule::class, TestAppModuleNegative::class)
+@UninstallModules(AppModule::class, TestAppModule::class)
 @HiltAndroidTest
-class TestGetSurveyDetails {
+class TestGetListOfSurveyUseCaseNegative {
     @get:Rule
     var hiltRule = HiltAndroidRule(this)
 
     @Inject
-    lateinit var getSurveyDeatailsUseCase: GetSurveyDeatailsUseCase
+    lateinit var getListOfSurveyUseCase: GetSurveListUseCase
+
 
     @Before
     fun init(){
         hiltRule.inject()
     }
-
     @Test
     fun ShouldEmitLoadingFirst() = runBlockingTest {
-        val emttions = getSurveyDeatailsUseCase("test")
+        val emttions = getListOfSurveyUseCase()
         val first = emttions.first()
-        assertThat(first).isInstanceOf(Resource.Loading::class.java)
+        Truth.assertThat(first).isInstanceOf(Resource.Loading::class.java)
     }
 
     @Test
-    fun ShouldReturnSurvey() = runBlockingTest {
-        val emttions = getSurveyDeatailsUseCase("test")
+    fun ErrorWasEmitted() = runBlockingTest {
+        val emttions = getListOfSurveyUseCase()
         val last = emttions.last()
-        val survry = last.data
-      assertThat(survry).isInstanceOf(Survey::class.java)
+        Truth.assertThat(last).isInstanceOf(Resource.Error::class.java)
     }
 
+    @Test
+    fun ErrorHasMessage() = runBlockingTest {
+        val emttions = getListOfSurveyUseCase()
+        val last = emttions.last()
+        Truth.assertThat(last.message).isNotEmpty()
+    }
 
 }

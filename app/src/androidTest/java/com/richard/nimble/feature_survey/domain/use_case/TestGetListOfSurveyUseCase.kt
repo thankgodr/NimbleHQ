@@ -3,6 +3,7 @@ package com.richard.nimble.feature_survey.domain.use_case
 import com.google.common.truth.Truth.assertThat
 import com.richard.nimble.core.data.Resource
 import com.richard.nimble.di.AppModule
+import com.richard.nimble.di.TestAppModuleNegative
 import com.richard.nimble.feature_survey.domain.GetSurveListUseCase
 import com.richard.nimble.feature_survey.domain.Survey
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -16,7 +17,7 @@ import org.junit.Rule
 import org.junit.Test
 import javax.inject.Inject
 
-@UninstallModules(AppModule::class)
+@UninstallModules(AppModule::class, TestAppModuleNegative::class)
 @HiltAndroidTest
 class TestGetListOfSurveyUseCase {
     @get:Rule
